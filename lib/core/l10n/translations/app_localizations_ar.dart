@@ -12,7 +12,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get appName => 'رووت';
 
   @override
-  String get welcomeBackToRoute => 'اهلا بكم في رووت';
+  String get welcomeBackToCommerceApp => 'اهلا بكم في التسوق ';
 
   @override
   String get pleaseSignInWithYourMail =>

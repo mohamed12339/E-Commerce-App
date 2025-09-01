@@ -4,10 +4,12 @@ import 'package:e_commerce_v2/core/l10n/translations/app_localizations.dart';
 import 'package:e_commerce_v2/core/routing/app_router.dart';
 import 'package:e_commerce_v2/core/routing/routes.dart';
 import 'package:e_commerce_v2/core/theme/app_theme.dart';
+import 'core/di/di.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  configureDependencies(); /// دا عشان نعرف الفانكشن بتاع getIt بس عشان استخدمها
   runApp(const MyApp());
   FlutterNativeSplash.remove();
 }
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Route E-Commerce",
+      title: "E-Commerce-App",
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

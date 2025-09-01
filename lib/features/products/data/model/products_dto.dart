@@ -1,7 +1,9 @@
-import 'package:e_commerce_v2/features/navigation_layout/tabs/categories/data/models/brands_models/brand_dto.dart';
-import 'package:e_commerce_v2/features/navigation_layout/tabs/categories/data/models/category_models/category_dto.dart';
-import 'package:e_commerce_v2/features/navigation_layout/tabs/categories/data/models/sub_categories_models/sub_category_dto.dart';
+
 import 'package:e_commerce_v2/features/products/domain/entity/product.dart';
+
+import '../../../screens_navigationBar_layout/tabs/categories/data/models/brands_models/brand_dto.dart';
+import '../../../screens_navigationBar_layout/tabs/categories/data/models/category_models/category_dto.dart';
+import '../../../screens_navigationBar_layout/tabs/categories/data/models/sub_categories_models/sub_category_dto.dart';
 
 class ProductsDto {
   int? sold;

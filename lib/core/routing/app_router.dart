@@ -1,9 +1,9 @@
 import 'package:e_commerce_v2/core/routing/routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import '../../features/auth/ui/login/view/login.dart';
+import '../../features/screens_navigationBar_layout/navigation_view.dart';
 
-import '../../features/auth/login/view/login.dart';
-import '../../features/navigation_layout/navigation_view.dart';
 
 
 abstract class AppRouter {
