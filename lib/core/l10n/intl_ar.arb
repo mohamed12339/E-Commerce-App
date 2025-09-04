@@ -21,5 +21,9 @@
   "thirdOff" : "خصم 30%",
   "advertisement1" : "لكل سماعات الرأس\nو AirPods",
   "advertisement2" : "لكل مستحضرات التجميل\nوالعناية بالبشرة",
-  "advertisement3" : "للحواسيب المحمولة\nوالهواتف المحمولة"
+  "advertisement3" : "للحواسيب المحمولة\nوالهواتف المحمولة",
+  "nameHint": "الاسم",
+  "rePasswordHint": "تكرار كلمة المرور مرة اخري",
+  "phoneNumberHint" : "رقم الهاتف",
+  "ifYouWantToCreateAccount" :  " إذا كنت تريد إنشاء حساب "
 }

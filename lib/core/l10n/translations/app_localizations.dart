@@ -143,7 +143,7 @@ abstract class AppLocalizations {
   /// No description provided for @createAccount.
   ///
   /// In en, this message translates to:
-  /// **'Create account'**
+  /// **'Create Account'**
   String get createAccount;
 
   /// No description provided for @forgetPassword.
@@ -235,6 +235,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'For Laptops\n& Mobiles'**
   String get advertisement3;
+
+  /// No description provided for @nameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get nameHint;
+
+  /// No description provided for @rePasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'RePassword'**
+  String get rePasswordHint;
+
+  /// No description provided for @phoneNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'PhoneNumber'**
+  String get phoneNumberHint;
+
+  /// No description provided for @ifYouWantToCreateAccount.
+  ///
+  /// In en, this message translates to:
+  /// **' ifYouWantToCreateAccount '**
+  String get ifYouWantToCreateAccount;
 }
 
 class _AppLocalizationsDelegate

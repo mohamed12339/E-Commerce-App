@@ -30,7 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dontHaveAnAccount => 'Don\'t have an account?';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Create Account';
 
   @override
   String get forgetPassword => 'Forget password';
@@ -76,4 +76,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get advertisement3 => 'For Laptops\n& Mobiles';
+
+  @override
+  String get nameHint => 'Name';
+
+  @override
+  String get rePasswordHint => 'RePassword';
+
+  @override
+  String get phoneNumberHint => 'PhoneNumber';
+
+  @override
+  String get ifYouWantToCreateAccount => ' ifYouWantToCreateAccount ';
 }

@@ -77,4 +77,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get advertisement3 => 'للحواسيب المحمولة\nوالهواتف المحمولة';
+
+  @override
+  String get nameHint => 'الاسم';
+
+  @override
+  String get rePasswordHint => 'تكرار كلمة المرور مرة اخري';
+
+  @override
+  String get phoneNumberHint => 'رقم الهاتف';
+
+  @override
+  String get ifYouWantToCreateAccount => ' إذا كنت تريد إنشاء حساب ';
 }

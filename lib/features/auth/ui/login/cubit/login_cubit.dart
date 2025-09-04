@@ -1,16 +1,16 @@
 import 'package:e_commerce_v2/core/api_result/api_result.dart';
-import 'package:e_commerce_v2/features/auth/domain/usecase/login_usecase.dart';
 import 'package:e_commerce_v2/features/auth/ui/login/cubit/login_state.dart';
 import 'package:e_commerce_v2/features/network/model/request/login_request/login_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import '../../../domain/usecase/login_and_register_usecase.dart';
 
 @injectable   ///  هنا بقا i صغيرة مش كابيتال عشان دا مش abstract class وهنا كتبها عشان getit تعملوا ما هيا دية package injectable بتعمل حاجة getit بس generated لوحدها مش هتكتبها زي ال news
 class LoginCubit extends Cubit<LoginState>{ /// هنا بقا ال cubit خد ال state بتاعتوا الانا عاملها تمم وفية شرح لل cubit في الكشكول
 
   final LoginUseCse _loginUseCse; /// مين ال هيكلم ال api بتاع ال login ال useCase
 
-  LoginCubit(this._loginUseCse):super(LoginState.initial()); /// الي هاكتبوا في ال super عشان اعرفوا ApiResult هيعمل اية بس
+  LoginCubit(this._loginUseCse):super(LoginState.initial()); /// الي هاكتبوا في ال super عشان اعرفوا Cubit هيعمل اية بس
 
   Future<void> login(String email , String password)async{
     var request = LoginRequest(email: email, password: password);

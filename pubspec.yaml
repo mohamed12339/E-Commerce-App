@@ -40,6 +40,7 @@ dependencies:
   flutter_native_splash:
   icons_launcher:
   pretty_dio_logger: ^1.4.0
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

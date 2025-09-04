@@ -9,7 +9,9 @@ showLoading(BuildContext context){
     return AlertDialog( ///هيا عبارة عن شكل كدا زي bottomSheet بالظبط  جواة اي حاجة زي تكيست او لودينج ودول بيتكتبوا جواة content وفية حاجة كمان اسمها title:
       content: Row(
         children: [
-          Text("Loading..."),
+          Text("Loading..." , style: TextStyle(
+             color: Colors.black
+          ),),
           Spacer(),
           CircularProgressIndicator(),
         ],

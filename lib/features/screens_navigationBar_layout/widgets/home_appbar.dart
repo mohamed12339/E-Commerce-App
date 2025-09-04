@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:e_commerce_v2/core/utils/app_assets.dart';
 import 'package:e_commerce_v2/core/widgets/search_and_cart_widget.dart';
+
+import '../../../core/theme/app_colors.dart';
 
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   final int tabIndex;
@@ -10,19 +12,26 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
-
-      title: SvgPicture.asset(AppSvgs.logo),
-      bottom:
-          tabIndex == 3
-              ? PreferredSize(
-                preferredSize: preferredSize,
-                child: const SizedBox(),
-              )
-              : PreferredSize(
-                preferredSize: preferredSize,
-                child: const SearchAndCartWidget(),
-              ),
+      automaticallyImplyLeading: false, // عشان ما يضيفش سهم back
+      leadingWidth: 180,
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 16.0), // تحكم في المسافة من الشمال
+        child: Image.asset(
+          AppImages.logo,
+          color: AppColors.blue,
+          height: 40,
+        ),
+      ),
+      centerTitle: false,
+      bottom: tabIndex == 3
+          ? PreferredSize(
+        preferredSize: preferredSize,
+        child: const SizedBox(),
+      )
+          : PreferredSize(
+        preferredSize: preferredSize,
+        child: const SearchAndCartWidget(),
+      ),
     );
   }
 

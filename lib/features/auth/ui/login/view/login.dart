@@ -14,20 +14,18 @@ import '../../widgets/auth_textfield.dart';
 
 
 class Login extends StatefulWidget {
-
- /// هنا عرفت ال login cubit عشان استخدمها في ال ui بقا ب bloc listener او blocbuilder وطبعا ايد مننساش blocprovider زي ال changenotifer وكدا getit هيا هتجبلي الحاجة بس طبعا generated المرادي
  const Login({super.key});
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-  LoginCubit viewModel = getIt();
+  LoginCubit viewModel = getIt(); /// هنا عرفت ال login cubit عشان استخدمها في ال ui بقا ب bloc listener او blocbuilder وطبعا ايد مننساش blocprovider زي ال changenotifer وكدا getit هيا هتجبلي الحاجة بس طبعا generated المرادي
   var emailController = TextEditingController();
 
   var passwordController = TextEditingController();
 
-  var formKey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();   /// دا مهم جدا دا الي بتسخدموا مع ال validation بتاع ال  textFromField وعشان يظهرللك الحاجة الحمرة دية الي بيقولك باسورد المفروض يتكتب كدا وهكزا
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +46,9 @@ class _LoginState extends State<Login> {
         },
         child: Scaffold(
           backgroundColor: AppColors.blue,
-          body: Form(
-            key: formKey,
+          body: Form( /// اهو دا بتاع ال validation
+            key: formKey, /// وانو يكون معايا variable اسمو formkey هوا دا الي هيا check
+            autovalidateMode: AutovalidateMode.always, /// دية لو عايز وانتا بتكتب يقعد يقول الصح وانتا بتكتب الايميل والباسورد في غير always حاجات كتير وانتا اختار
             child: SafeArea(
               child: Padding(
                 padding:  EdgeInsets.symmetric(horizontal: 16),
@@ -104,7 +103,7 @@ class _LoginState extends State<Login> {
                        SizedBox(height: 50),
                     ElevatedButton(
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) { ///ودا برضو نفس الكلام الي فوق : دا مهم جدا  دا الي بتسخدموا مع ال validation بتاع ال  textFromField وعشان يظهرللك الحاجة الحمرة دية الي بيقولك باسورد المفروض يتكتب كدا وهكزا
                          viewModel.login(emailController.text, passwordController.text);
                          Navigator.pushNamed(context, Routes.navigationRoute);
                         }
@@ -125,22 +124,34 @@ class _LoginState extends State<Login> {
                         children: [
                           Text(
                             AppLocalizations.of(context)!.dontHaveAnAccount,
-                            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           Expanded(
-                            child: TextButton(
-                              onPressed: () {
-                                // TODO:  Navigate to create account
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(context, Routes.register);
                               },
-
-                              child: Text(
-                                AppLocalizations.of(context)!.createAccount,
-                                style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!.createAccount,
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context).textTheme.titleLarge,
+                                  ),
+                                  SizedBox(height: 2),
+                                  Divider(
+                                    color: Colors.white,
+                                    thickness: 2,
+                                    indent: 0,
+                                    endIndent: 0,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                         ],
-                      ),
+                      )
                     ],
                   ),
                 ),

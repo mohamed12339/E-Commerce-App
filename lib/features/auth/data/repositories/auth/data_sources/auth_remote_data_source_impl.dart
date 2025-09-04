@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:e_commerce_v2/features/auth/data/repositories/auth/data_sources/auth_remote_data_source.dart';
 import 'package:e_commerce_v2/features/network/api/commerce_services.dart';
 import 'package:e_commerce_v2/features/network/model/request/login_request/login_request.dart';
@@ -20,18 +21,27 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource{ /// فايدة حت
     try{
       return SuccessApiResult(await _apiServices.login(loginRequest));   /// انا هنا بندة ال api بتاع ال  login وال retrofit package هاتكمل بقا ودية حلاوتها لانها عاملة genetrated لوحدها من عن طرق تكتب في ال terminal dart pub run build_runner build بس كدا وهيا تعمل api login هتلاقية معمول عندها في الفايل بتاعها وكمان رجعتها كا successApiResult
     }catch(e){
-      ///todo : handle errors
-      return ErrorApiResult(ServerError(e.toString())); /// نفس الكلام بتاع ال success بس هرجع ايرور بس هنا
+      if(e is DioException){ /// دية عشان نهندل الايرور ويطلع بطريقة حلوة في حالة لو النت فصل مثلا طب لو مش فاصل واكاتب حاجة غلط يظهرللك incorrectPasswordOrEmail
+        return ErrorApiResult(ServerError(e.response?.data["message"]??"Something Went Wrong Please try Again"));
+      }else{
+        ///todo : handle errors
+        return ErrorApiResult(ServerError("Oops! Please try Again.")); /// نفس الكلام بتاع ال success بس هرجع ايرور بس هنا
+      }
+
     }
   }
 
   @override
-  Future<ApiResult<TokenResponse>> register(RegisterRequest request) async {///نفس الكلام بردو بتاع سطر 16
+  Future<ApiResult<TokenResponse>> register(RegisterRequest request) async {///نفس الكلام بردو بتاع سطر 19
     try {
-      return SuccessApiResult(await _apiServices.register(request));/// هنا انا بردو بندة علي ال api بتاع ال register وبردو نفس الكلام بتاع سطر 18
-    } catch (e) {
-      ///todo : handle errors
-      return ErrorApiResult(ServerError(e.toString()));/// نفس الكلام بتاع ال success بس هرجع ايرور بس هنا
-    }
+      return SuccessApiResult(await _apiServices.register(request));/// هنا انا بردو بندة علي ال api بتاع ال register وبردو نفس الكلام بتاع سطر 21
+    } catch(e){
+      if(e is DioException){ /// دية عشان نهندل الايرور ويطلع بطريقة حلوة في حالة لو النت فصل مثلا طب لو مش فاصل واكاتب حاجة غلط يظهرللك Fail
+        return ErrorApiResult(ServerError(e.response?.data["message"]??"Something Went Wrong Please try Again"));
+      }else{
+        ///todo : handle errors
+        return ErrorApiResult(ServerError("Oops! Please try Again.")); /// نفس الكلام بتاع ال success بس هرجع ايرور بس هنا
+      }
   }
+}
 }
