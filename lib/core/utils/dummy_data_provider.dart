@@ -1,7 +1,10 @@
 
 
-import '../../features/products/domain/entity/product.dart';
-import '../../features/screens_navigationBar_layout/tabs/categories/domain/entities/category.dart';
+
+import 'package:e_commerce_v2/features/screens_navigationBar_layout/domian/model/entity/category.dart';
+import 'package:e_commerce_v2/features/screens_navigationBar_layout/domian/model/entity/product.dart';
+
+
 
 abstract class DummyDataProvider {
   static List<Category> generateCategories() {

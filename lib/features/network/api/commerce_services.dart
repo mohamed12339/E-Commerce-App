@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart' hide Headers;
+import 'package:e_commerce_v2/features/network/model/categories/categories_response.dart';
+import 'package:e_commerce_v2/features/network/model/products/products_response.dart';
 import 'package:e_commerce_v2/features/network/model/request/login_request/login_request.dart';
 import 'package:e_commerce_v2/features/network/model/request/register_request/register_request.dart';
 import 'package:e_commerce_v2/features/network/model/response/token_request/token_response.dart';
@@ -21,4 +23,10 @@ abstract class CommerceServices { /// طب عشان استخدمها بقا
   @POST("/auth/signup")
   @Headers(<String, String>{'Content-Type': 'application/json',})/// بعض السيرفرات لازم يكون الهيدر application/json فالازم كنت اكتب دية عشان ال register يشتغل كانت لازم
   Future<TokenResponse> register(@Body() RegisterRequest request); ///  دية @Body() عشان يعرف يعمل generate لل _CommerceServices بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي post واديتوا ال ال path يعني بس وهوا عملوا نفس الكلام برودو في ال register وال token وال user
+
+  @GET('/categories')
+  Future<CategoriesResponse> loadCategories();   ///  دية  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get واديتوا ال ال path يعني بس
+
+  @GET('/products')
+  Future<ProductsResponse> loadProducts(); ///  دية بردوا  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get واديتوا ال ال path يعني بس
 }

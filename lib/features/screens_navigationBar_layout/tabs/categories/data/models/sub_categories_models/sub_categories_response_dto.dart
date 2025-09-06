@@ -1,4 +1,6 @@
-import 'metadata_dto.dart';
+
+import 'package:e_commerce_v2/features/network/model/common/meta_data/meta_data.dart';
+
 import 'sub_category_dto.dart';
 
 class SubCategoriesResponseDto {

@@ -1,5 +1,7 @@
+import 'package:e_commerce_v2/features/network/model/common/meta_data/meta_data.dart';
+
 import 'brand_dto.dart';
-import 'metadata_dto.dart';
+
 
 class BrandsResponseDto {
   int? results;

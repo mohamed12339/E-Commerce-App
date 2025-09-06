@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:e_commerce_v2/features/screens_navigationBar_layout/domian/model/entity/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../features/products/domain/entity/product.dart';
 import '../utils/app_assets.dart';
 
 class CustomProductCard extends StatelessWidget {
@@ -49,30 +49,32 @@ class CustomProductCard extends StatelessWidget {
                       Text(
                         product.title ?? 'Unknown Product',
                         style: textTheme.headlineSmall,
+                        maxLines: 1,
                       ),
 
                       Text(
                         product.description ?? 'No description available',
                         style: textTheme.headlineSmall,
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                       const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'EGP ${product.priceAfterDiscount ?? 0} ',
+                            'EGP ${product.price ?? 0} ',
                             style: textTheme.headlineSmall,
                           ),
-                          Text(
-                            " ${product.price ?? 0}",
-                            style: Theme.of(
-                              context,
-                            ).textTheme.headlineSmall?.copyWith(
-                              color: colorScheme.primary.withValues(alpha: .6),
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
+                          // Text(
+                          //   " ${product.price ?? 0}",
+                          //   style: Theme.of(
+                          //     context,
+                          //   ).textTheme.headlineSmall?.copyWith(
+                          //     color: colorScheme.primary.withValues(alpha: .6),
+                          //     decoration: TextDecoration.lineThrough,
+                          //   ),
+                          // ),
                         ],
                       ),
                       Row(
