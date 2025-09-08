@@ -7,7 +7,7 @@ import '../../../core/theme/app_colors.dart';
 
 class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
   final int tabIndex;
-  const HomeAppbar({super.key, required this.tabIndex});
+  const HomeAppbar({super.key, this.tabIndex = 0 });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       centerTitle: false,
+
       bottom: tabIndex == 3
           ? PreferredSize(
         preferredSize: preferredSize,

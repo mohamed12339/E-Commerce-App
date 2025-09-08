@@ -13,7 +13,7 @@ class HomeTabCubit extends Cubit<HomeTabState> {  /// دا الـ Cubit الرئ
 
   HomeTabCubit(this._loadCategoriesUseCase, this._loadProductsUseCase) : super(HomeTabState.initial()); /// الي هاكتبوا في ال super عشان اعرفوا Cubit هيعمل اية بس وبعتلوا ال constructors
 
-  Future<void> loadCategories() async { /// فانكشن عشان  Categories
+  Future<void> loadCategories() async {  /// فانكشن عشان Categories مش بترجع حاجة
 
     emit(state.copyWith(categoriesState: LoadingApiResult())); /// انا هنا بقولوا الي هاتغير مين دلوقتي categoriesState واعمل loading
 
@@ -22,7 +22,7 @@ class HomeTabCubit extends Cubit<HomeTabState> {  /// دا الـ Cubit الرئ
     emit(state.copyWith(categoriesState: result)); /// هنا نفس الي state دية حاجة موجودة مع ال emit  بس الي هايتغير هوا ال categoriesState ونحدثوا بقا في ال ui
   }
 
-  Future<void> loadProducts() async { /// فانكشن عشان  Products
+  Future<void> loadProducts() async {  /// فانكشن Products عشان مش بترجع حاجة
 
     emit(state.copyWith(productsState: LoadingApiResult()));  /// انا هنا بقولوا الي هاتغير مين دلوقتي productsState واعمل loading
 

@@ -28,9 +28,28 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource { /// فايدة ح�
   }
 
   @override
-  Future<ApiResult<ProductsResponse>> loadProducts() async {  /// انا هنا بقولوا رجعلي apiResults عشان لو فية ايرور كدا فهل هيبقا success or error or loading or initial  وكمان هيا مش هترجع api result بس لا هترجعوا علي انو ProductsResponse ودية فايدة tempelete الي عملتها هناك في ال apiResult الانا عملتها هناك
+  Future<ApiResult<ProductsResponse>> loadProducts({String? categoryId, String? subCategoryId}) async {  /// انا هنا بقولوا رجعلي apiResults عشان لو فية ايرور كدا فهل هيبقا success or error or loading or initial  وكمان هيا مش هترجع api result بس لا هترجعوا علي انو ProductsResponse ودية فايدة tempelete الي عملتها هناك في ال apiResult الانا عملتها هناك
     try{
-      return SuccessApiResult(await _commerceServices.loadProducts());   /// انا هنا بندة ال api بتاع ال  loadProducts وال retrofit package هاتكمل بقا ودية حلاوتها لانها عاملة genetrated لوحدها من عن طرق تكتب في ال terminal dart pub run build_runner build بس كدا وهيا تعمل api loadCategories هتلاقية معمول عندها في الفايل بتاعها وكمان رجعتها كا successApiResult
+      var productsResponse = categoryId != null ? await _commerceServices.loadProductsByCategory( /// وللة لو انا بعت categoryId اصلا مش ب null هتلكم ال api loadProductsByCategory  الي فيها بارميتارز وان كل  صورة من ال category تدوس عليها تجيب products بتاعتها
+        categoryId,
+        subCategoryId,
+      )
+          : await _commerceServices.loadProducts(); /// طب ايلس كلم ال api بتاعة loadProducts العادية بس
+      return SuccessApiResult(productsResponse);
+    }catch(e){
+      if(e is DioException){ /// دية عشان نهندل الايرور ويطلع بطريقة حلوة في حالة لو النت فصل مثلا طب لو مش فاصل واكاتب حاجة غلط يظهرللك incorrectPasswordOrEmail
+        return ErrorApiResult(ServerError(e.response?.data["message"]??"Something Went Wrong Please try Again"));
+      }else{
+        ///todo : handle errors
+        return ErrorApiResult(ServerError("Oops! Please try Again.")); /// نفس الكلام بتاع ال success بس هرجع ايرور بس هنا
+      }
+
+    }
+  }
+  @override
+  Future<ApiResult<CategoriesResponse>> loadSubCategories(String categoryId) async { /// انا هنا بقولوا رجعلي apiResults عشان لو فية ايرور كدا فهل هيبقا success or error or loading or initial  وكمان هيا مش هترجع api result بس لا هترجعوا علي انو CategoriesResponse ودية فايدة tempelete الي عملتها هناك في ال apiResult الانا عملتها هناك
+    try{
+      return SuccessApiResult(await _commerceServices.loadSubCategories(categoryId));   /// انا هنا بندة ال api بتاع ال  loadSubCategories وال retrofit package هاتكمل بقا ودية حلاوتها لانها عاملة genetrated لوحدها من عن طرق تكتب في ال terminal dart pub run build_runner build بس كدا وهيا تعمل api loadSubCategories هتلاقية معمول عندها في الفايل بتاعها وكمان رجعتها كا successApiResult
     }catch(e){
       if(e is DioException){ /// دية عشان نهندل الايرور ويطلع بطريقة حلوة في حالة لو النت فصل مثلا طب لو مش فاصل واكاتب حاجة غلط يظهرللك incorrectPasswordOrEmail
         return ErrorApiResult(ServerError(e.response?.data["message"]??"Something Went Wrong Please try Again"));

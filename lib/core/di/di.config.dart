@@ -25,6 +25,7 @@ import '../../features/auth/domain/usecase/login_and_register_usecase.dart'
 import '../../features/auth/ui/login/cubit/login_cubit.dart' as _i416;
 import '../../features/auth/ui/login/cubit/register_cubit.dart' as _i980;
 import '../../features/network/api/commerce_services.dart' as _i392;
+import '../../features/products/ui/cubit/category_products_cubit.dart' as _i686;
 import '../../features/screens_navigationBar_layout/data/home_repository/data_source/home_remote_data_source.dart'
     as _i412;
 import '../../features/screens_navigationBar_layout/data/home_repository/data_source/home_remote_data_source_impl.dart'
@@ -41,6 +42,10 @@ import '../../features/screens_navigationBar_layout/domian/usecase/load_categori
     as _i555;
 import '../../features/screens_navigationBar_layout/domian/usecase/load_products_use_case.dart'
     as _i129;
+import '../../features/screens_navigationBar_layout/domian/usecase/load_subcategories.dart'
+    as _i515;
+import '../../features/screens_navigationBar_layout/tabs/categories/presentation/cubit/categories_cubit.dart'
+    as _i341;
 import '../../features/screens_navigationBar_layout/tabs/home/presentation/cubit/home_tab_cubit.dart'
     as _i595;
 import '../shared_pref_helper/shared_pref_helper.dart' as _i1062;
@@ -86,6 +91,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i129.LoadProductsUseCase>(
       () => _i129.LoadProductsUseCase(gh<_i20.HomeRepository>()),
     );
+    gh.factory<_i515.LoadSubCategoriesUseCase>(
+      () => _i515.LoadSubCategoriesUseCase(gh<_i20.HomeRepository>()),
+    );
     gh.factory<_i1024.LoginUseCse>(
       () => _i1024.LoginUseCse(gh<_i787.AuthRepository>()),
     );
@@ -100,6 +108,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i980.RegisterCubit>(
       () => _i980.RegisterCubit(gh<_i1024.RegisterUseCase>()),
+    );
+    gh.factory<_i686.CategoryProductsCubit>(
+      () => _i686.CategoryProductsCubit(gh<_i129.LoadProductsUseCase>()),
+    );
+    gh.factory<_i341.CategoriesCubit>(
+      () => _i341.CategoriesCubit(
+        gh<_i555.LoadCategoriesUseCase>(),
+        gh<_i515.LoadSubCategoriesUseCase>(),
+      ),
     );
     gh.factory<_i416.LoginCubit>(
       () => _i416.LoginCubit(gh<_i1024.LoginUseCse>()),

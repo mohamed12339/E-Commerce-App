@@ -38,9 +38,9 @@ class HomeRepositoryImpl extends HomeRepository {  /// فايدة حتة الي 
   }
 
   @override
-  Future<ApiResult<List<Product>>> loadProducts() async {  /// انا هنا بقولوا رجعلي apiResults عشان لو فية ايرور كدا فهل هيبقا success or error or loading or initial  وكمان هيا مش هترجع api result بس لا هترجعوا علي انو <List<Category> ودية فايدة tempelete الي عملتها هناك في ال apiResult الانا عملتها هناك طب انا هارجعوا <List<Product> لية  عشان هيبقا فية كمية products ودا عشان يتعمل بال mappers عشان تعرف ال api بتاع productResponse بس والحاجة الي هاستخدمها
+  Future<ApiResult<List<Product>>> loadProducts({String? categoryId, String? subCategoryId}) async {  /// انا هنا بقولوا رجعلي apiResults عشان لو فية ايرور كدا فهل هيبقا success or error or loading or initial  وكمان هيا مش هترجع api result بس لا هترجعوا علي انو <List<Category> ودية فايدة tempelete الي عملتها هناك في ال apiResult الانا عملتها هناك طب انا هارجعوا <List<Product> لية  عشان هيبقا فية كمية products ودا عشان يتعمل بال mappers عشان تعرف ال api بتاع productResponse بس والحاجة الي هاستخدمها
     try {
-      ApiResult<ProductsResponse> result = await _remoteDataSource.loadProducts(); ///  هنا بنادي على الـ RemoteDataSource عشان يجيبلي ProductsResponse من API
+      ApiResult<ProductsResponse> result = await _remoteDataSource.loadProducts(categoryId: categoryId, subCategoryId: subCategoryId); ///  هنا بنادي على الـ RemoteDataSource عشان يجيبلي ProductsResponse من API
 
       if (result.hasData) {  ///  لو النتيجة اللي رجعت من الـ RemoteDataSource كانت  Success  وكمان الداتا اللي رجعت من النوع ProductsResponse خلاص حملها وخليها تظهر
         return SuccessApiResult(
@@ -48,6 +48,23 @@ class HomeRepositoryImpl extends HomeRepository {  /// فايدة حتة الي 
         );
       } else {
         return ErrorApiResult(result.getError); ///  لو النتيجة ErrorApiResult هرجع نفس الـ Error اللي جالي زي ما هو
+      }
+    } catch (e) {
+      return ErrorApiResult(UnKnownError("Something went wrong, try again later")); ///  لو النتيجة مش Success ولا Error (حاجة unexpected) هرجع UnKnownError
+    }
+  }
+
+  @override
+  Future<ApiResult<List<Category>>> loadSubCategories(String categoryId) async {
+    try {
+      ApiResult<CategoriesResponse> result = await _remoteDataSource.loadSubCategories(categoryId); ///  هنا بنادي على الـ RemoteDataSource عشان يجيبلي  CategoriesResponse وبردو يجبلي ال loadSubCategories  من API
+
+      if (result.hasData) { ///  لو النتيجة اللي رجعت من الـ RemoteDataSource كانت  Success  وكمان الداتا اللي رجعت من النوع CategoriesResponse خلاص حملها وخليها تظهر
+        return SuccessApiResult(
+          _categoryMapper.fromDataModels(result.getData.data), ///  هنا برجع SuccessApiResult تاني لكن المرة دي Domain Model يعني الطبقات الأعلى (Bloc:cubit and  UI) هيستقبلوا Domain Model الجاهز للاستخدام
+        );
+      } else {
+        return ErrorApiResult(result.getError);  ///  لو النتيجة ErrorApiResult هرجع نفس الـ Error اللي جالي زي ما هو
       }
     } catch (e) {
       return ErrorApiResult(UnKnownError("Something went wrong, try again later")); ///  لو النتيجة مش Success ولا Error (حاجة unexpected) هرجع UnKnownError

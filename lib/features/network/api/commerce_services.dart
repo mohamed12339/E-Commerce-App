@@ -29,4 +29,13 @@ abstract class CommerceServices { /// طب عشان استخدمها بقا
 
   @GET('/products')
   Future<ProductsResponse> loadProducts(); ///  دية بردوا  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get واديتوا ال ال path يعني بس
+
+  @GET('/products?category={categoryId}&category={subCategoryId}')
+  Future<ProductsResponse> loadProductsByCategory( ///  دية بردوا  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get واديتوا ال ال path يعني  وعشان استخدم دا String categoryId and subCategoryId هنا @GET('/products?category={categoryId}&category={subCategoryId}') لازم اقولوا @Path وعشان لما اجي ادوس علي صور ال category يوديني علي ال products بتاعها
+      @Path() String? categoryId,
+      @Path() String? subCategoryId,
+      );
+
+  @GET("/categories/{categoryId}/subcategories")
+  Future<CategoriesResponse> loadSubCategories(@Path() String categoryId); ///  دية بردوا  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get واديتوا ال ال path يعني  وعشان استخدم دا String categoryId هنا @GET("/categories/{categoryId}/subcategories") لازم اقولوا @Path
 }

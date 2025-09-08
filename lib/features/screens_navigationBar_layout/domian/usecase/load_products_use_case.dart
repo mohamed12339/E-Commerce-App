@@ -9,5 +9,5 @@ import 'package:injectable/injectable.dart';
 
   LoadProductsUseCase(this._homeRepository);
 
-  Future<ApiResult<List<Product>>> call()=> _homeRepository.loadProducts();  /// وهنا عرفتوا الفانكشن الي هاستخمها بتاعة ال HomeRepository بس كدا دا ال useCase
+  Future<ApiResult<List<Product>>> call({String? categoryId, String? subCategory,}) => _homeRepository.loadProducts(categoryId: categoryId, subCategoryId: categoryId);  /// وهنا عرفتوا الفانكشن الي هاستخمها بتاعة ال HomeRepository بس كدا دا ال useCase وال الحاجة الي هعملها او هاستخدمها يعني لما ادوس علي صور ال category يجبلي ال products بتاعتاها
 }
