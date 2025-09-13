@@ -1,4 +1,6 @@
+import 'package:e_commerce_v2/features/cart/presentation/cart_cubit/cart_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:e_commerce_v2/core/l10n/translations/app_localizations.dart';
 import 'package:e_commerce_v2/core/routing/app_router.dart';
@@ -14,7 +16,12 @@ void main() async{
   configureDependencies(); /// دا عشان نعرف الفانكشن بتاع getIt بس عشان استخدمها
   var prefHelper = getIt<SharedPrefsHelper>();   ///هنا بقولوا ان getit هاتي SharedPrefsHelper عشان اعرف هوا اتخزن ولا لا وعمل login ولا لا
   var isLoggedIn = (await prefHelper.getToken()) != null;  /// طب اعرف بقا هوا عمل login or register ازاي وللة لو انا ب get ال token ومش ب null ساعتها ال user عامل login او register
-  runApp(MyApp(isLoggedIn: isLoggedIn));
+ runApp(
+    BlocProvider(
+      create: (_) => getIt<CartCubit>(),  /// دا كان لازم اعرف دا هنا عشان سكرينة cart  تشتغل  علي app كلو
+      child: MyApp(isLoggedIn: isLoggedIn),
+    ),
+  );
   FlutterNativeSplash.remove();
 }
 

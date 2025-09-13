@@ -1,10 +1,12 @@
+import 'package:e_commerce_v2/features/cart/presentation/cart_cubit/cart_cubit.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/tabs/categories/presentation/categories_tab_view.dart';
-import 'package:e_commerce_v2/features/screens_navigationBar_layout/tabs/favorite/favorite_tab_view.dart';
+import 'package:e_commerce_v2/features/screens_navigationBar_layout/tabs/favorite/presentation/screen/favorite_tab_view.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/tabs/home/presentation/home_tab_view.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/tabs/profile/profile_tab_view.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/widgets/home_appbar.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/widgets/home_bottom_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:e_commerce_v2/core/theme/app_colors.dart';
 
@@ -24,6 +26,12 @@ class _NavigationViewState extends State<NavigationView> {
     const FavoriteTabView(),
     const ProfileTabView(),
   ];
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<CartCubit>(context).loadCart();
+  }
+
 
   @override
   Widget build(BuildContext context) {

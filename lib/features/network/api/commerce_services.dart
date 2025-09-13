@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart' hide Headers;
-import 'package:e_commerce_v2/features/network/model/categories/categories_response.dart';
-import 'package:e_commerce_v2/features/network/model/products/products_response.dart';
+import 'package:e_commerce_v2/features/network/model/request/cart/add_product_request.dart';
+import 'package:e_commerce_v2/features/network/model/request/cart/update_product_quantity_request.dart';
 import 'package:e_commerce_v2/features/network/model/request/login_request/login_request.dart';
 import 'package:e_commerce_v2/features/network/model/request/register_request/register_request.dart';
+import 'package:e_commerce_v2/features/network/model/response/cart/cart_response.dart';
+import 'package:e_commerce_v2/features/network/model/response/categories/categories_response.dart';
+import 'package:e_commerce_v2/features/network/model/response/products/products_response.dart';
 import 'package:e_commerce_v2/features/network/model/response/token_request/token_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/error_logger.dart';
@@ -38,4 +41,20 @@ abstract class CommerceServices { /// طب عشان استخدمها بقا
 
   @GET("/categories/{categoryId}/subcategories")
   Future<CategoriesResponse> loadSubCategories(@Path() String categoryId); ///  دية بردوا  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get واديتوا ال ال path يعني  وعشان استخدم دا String categoryId هنا @GET("/categories/{categoryId}/subcategories") لازم اقولوا @Path
+
+
+  @GET("/cart")
+  Future<CartResponse> getCart(); ///  دية بردوا  عشان يعرف يعمل  generate لل _CommerceServices بس المرادي مش بعتلوا حاجة ولا body ولا query  بدل ما روحت وعملت في ال news عملت apiManager لا هنا انا عرفت نوعوا اية زي get
+
+  @POST("/cart")
+  Future<dynamic> addProductToCart(@Body() AddProductRequest request); /// هنا بعمل add علي علامة الزائد انو يزود product تاني في ال cart
+
+  @PUT("cart/{productId}")
+  Future<CartResponse> updateProductQuantity( /// ودا هايعمل update لل الكمية الي هيا count وبعتلوا Path id بتاع ال product
+      @Body() UpdateProductQuantityRequest request,
+      @Path() String productId,
+      );
+
+  @DELETE("cart/{productId}")
+  Future<CartResponse> removeProductFromCart(@Path() productId); /// دا هيمسح ال product من ال cart
 }

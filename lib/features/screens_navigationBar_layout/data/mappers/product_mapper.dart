@@ -1,4 +1,5 @@
-import 'package:e_commerce_v2/features/network/model/products/product_dm.dart';
+
+import 'package:e_commerce_v2/features/network/model/response/products/product_dm.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/domian/model/entity/product.dart';
 
 import 'package:injectable/injectable.dart';
@@ -9,17 +10,17 @@ class ProductMapper {  /// انا هنا ممكن اعملوا علي ال chatg
 
     return Product(
       id: product.id,
-      title: product.title,
-      description: product.description,
-      price: product.price,
+      title: product.title ?? "",
+      description: product.description ?? "",
+      price: product.price ?? 0,
       priceAfterDiscount: product.priceAfterDiscount ?? 0,
-      imageCover: product.imageCover,
-      images: product.images,
-      categoryId: product.category.id ?? "",
-      brandId: product.brand.id ?? "",
-      ratingsAverage: product.ratingsAverage,
-      ratingsQuantity: product.ratingsQuantity,
-      quantity: product.quantity,
+      imageCover: product.imageCover ?? "",
+      images: product.images ?? [],
+      categoryId: product.category?.id ?? "",
+      brandId: product.brand?.id ?? "",
+      ratingsAverage: product.ratingsAverage ?? 0,
+      ratingsQuantity: product.ratingsQuantity ?? 0,
+      quantity: product.quantity ?? 0,
       availableColors: product.availableColors ?? [],
     );
   }

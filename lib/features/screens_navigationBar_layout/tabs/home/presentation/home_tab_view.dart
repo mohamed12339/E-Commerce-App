@@ -19,7 +19,7 @@ class HomeTabView extends StatefulWidget {
 
 class _HomeTabViewState extends State<HomeTabView> {
   var homeCubit = getIt<HomeTabCubit>(); ///  انا عملت كدا عشان اعرف getit نوع الحاجة الي هاستخدمها لازم اكتب get it كدا عشان اعرف النوع الحاجة
-
+  GlobalKey loadingDialogKey = GlobalKey();
   @override
   void initState() { /// وهنا بقا عرفتوا ال ui اني جبت من get it كل الحاجات الي هاستخدمها والفانكشن كمان اهي بس تظهر اول لما تفتح ال screen دية  ودا ال initSTATE عشان كدا حطيتها فيها
     super.initState();

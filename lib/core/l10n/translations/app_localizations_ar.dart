@@ -89,4 +89,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ifYouWantToCreateAccount => ' إذا كنت تريد إنشاء حساب ';
+
+  @override
+  String get cart => 'السلة';
+
+  @override
+  String get totalPrice => 'السعر النهائي';
+
+  @override
+  String get checkout => 'الدفع';
+
+  @override
+  String get addToCart => 'اضف الي السلة';
+
+  @override
+  String get egp => 'جنيه';
+
+  @override
+  String get color => 'لون';
 }

@@ -25,5 +25,11 @@
   "nameHint": "الاسم",
   "rePasswordHint": "تكرار كلمة المرور مرة اخري",
   "phoneNumberHint" : "رقم الهاتف",
-  "ifYouWantToCreateAccount" :  " إذا كنت تريد إنشاء حساب "
+  "ifYouWantToCreateAccount" :  " إذا كنت تريد إنشاء حساب ",
+  "cart": "السلة",
+  "totalPrice": "السعر النهائي",
+  "checkout": "الدفع",
+  "addToCart": "اضف الي السلة",
+  "egp": "جنيه",
+  "color": "لون"
 }

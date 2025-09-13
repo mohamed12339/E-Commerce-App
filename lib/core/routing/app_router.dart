@@ -1,8 +1,13 @@
 import 'package:e_commerce_v2/core/routing/routes.dart';
+import 'package:e_commerce_v2/core/utils/dialog_utills.dart';
+import 'package:e_commerce_v2/features/cart/presentation/cart_cubit/cart_cubit.dart';
+import 'package:e_commerce_v2/features/cart/presentation/cart_cubit/cart_state.dart';
+import 'package:e_commerce_v2/features/cart/presentation/screen/cart_screen.dart';
 import 'package:e_commerce_v2/features/products/ui/category_products/screens/category_products.dart';
 import 'package:e_commerce_v2/features/products/ui/category_products/screens/category_products_args.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/auth/ui/login/view/login.dart';
 import '../../features/screens_navigationBar_layout/navigation_view.dart';
 
@@ -16,37 +21,37 @@ abstract class AppRouter {   /// هنا بستخدم ال generate Routes دا �
     }
 
     final uri = Uri.parse(settings.name ?? '/'); /// ودا uri  بيعرف اني سكرين اقدر افتحها
-
+    Widget currentScreen;
     switch (uri.path) {
       case Routes.navigationRoute:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) => const NavigationView(),
-        );
+        currentScreen = const NavigationView();
       case Routes.loginRoute:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) =>  Login(),
-        );
+        currentScreen = Login();
       case Routes.categoryProductsRoutes: /// هنا الحلو بقا في الموضوع ان بدل ما كنت ببعت arguments وكدا واعمل modalRoute لا انا هنا بقا ابعتها بقا الحاجة
 
       final args = settings.arguments as CategoryProductArgs ; ///وبدل ما كنت بكتب  في السكرنة التانية عشان اقولها ال argument بتاعتها فا كنت ببعت modalRoute.settings.مش عارف لا خلاص انا اقدر ابعتلها الحاجة هنا وخلاص
-       return MaterialPageRoute(
-         builder: (context){
-           return CategoryProducts( /// دا كدا العادي الانا كنت بعملوا بس المرادي هنا  الفايدة اية بقا اني هابعت بقا هنا ال arguments ال هيا هتبقا ال category وال selectedCategory
-             categoryId: args.categoryId ,
-             subCategoryId: args.subCategoryId,
-           );
-         }
-       );
+      currentScreen = CategoryProducts( /// دا كدا العادي الانا كنت بعملوا بس المرادي هنا  الفايدة اية بقا اني هابعت بقا هنا ال arguments ال هيا هتبقا ال category وال selectedCategory
+        categoryId: args.categoryId,
+        subCategoryId: args.subCategoryId,
+      );
+      case Routes.cartRoute:
+        currentScreen = const CartScreen();
       default:
-        return MaterialPageRoute(
-          settings: settings,
-          builder:
-              (_) => const Scaffold(
-                body: Center(child: Text('404 - Page Not Found')),
-              ),
+        currentScreen = const Scaffold(
+          body: Center(child: Text('404 - Page Not Found')),
         );
     }
+    return MaterialPageRoute(
+      builder: (_) => BlocListener<CartCubit, CartState>(
+        listener: (context, state) {
+          if (state.cartApiState.isLoading) {
+            showLoading(context);
+          } else {
+            hideLoading(context);
+          }
+        },
+        child: currentScreen,
+      ),
+    );
   }
 }

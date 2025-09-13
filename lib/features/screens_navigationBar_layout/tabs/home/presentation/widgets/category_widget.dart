@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/domian/model/entity/category.dart';
 import 'package:flutter/material.dart';
-import 'package:e_commerce_v2/core/utils/app_assets.dart';
 
 
 
@@ -24,13 +23,13 @@ class CategoryWidget extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 1,
               child: CachedNetworkImage(
-                imageUrl: category.image ?? AppImages.advertisement1,
+                imageUrl: category.image,
                 fit: BoxFit.fill,
               ),
             ),
           ),
           Text(
-            category.name ?? 'Category Name',
+            category.name,
             style: Theme.of(context).textTheme.bodySmall,
             maxLines: 1,
           ),

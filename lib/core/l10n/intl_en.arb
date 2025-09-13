@@ -25,5 +25,11 @@
   "nameHint": "Name",
   "rePasswordHint": "RePassword",
   "phoneNumberHint" : "PhoneNumber",
-  "ifYouWantToCreateAccount" :  " ifYouWantToCreateAccount "
+  "ifYouWantToCreateAccount" :  " ifYouWantToCreateAccount ",
+  "cart": "Cart",
+  "totalPrice": "Total Price",
+  "checkout": "Check Out",
+  "addToCart": "Add to Cart",
+  "egp": "EGP",
+  "color": "color"
 }

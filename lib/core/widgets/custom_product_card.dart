@@ -33,8 +33,7 @@ class CustomProductCard extends StatelessWidget {
                   ),
                   child: CachedNetworkImage(
                     imageUrl:
-                        product.imageCover ??
-                        'https://ecommerce.routemisr.com/Route-Academy-products/1678303324588-cover.jpeg',
+                        product.imageCover,
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
@@ -47,13 +46,13 @@ class CustomProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.title ?? 'Unknown Product',
+                        product.title,
                         style: textTheme.headlineSmall,
                         maxLines: 1,
                       ),
 
                       Text(
-                        product.description ?? 'No description available',
+                        product.description,
                         style: textTheme.headlineSmall,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -63,7 +62,7 @@ class CustomProductCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'EGP ${product.price ?? 0} ',
+                            'EGP ${product.price} ',
                             style: textTheme.headlineSmall,
                           ),
                           // Text(
@@ -84,7 +83,7 @@ class CustomProductCard extends StatelessWidget {
                             spacing: 4,
                             children: [
                               Text(
-                                'Review (${product.ratingsAverage?.toStringAsFixed(1) ?? 0})',
+                                'Review (${product.ratingsAverage.toStringAsFixed(1)})',
                                 style: textTheme.headlineSmall,
                               ),
                               SvgPicture.asset(AppSvgs.ratingIcon),

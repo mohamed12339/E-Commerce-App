@@ -24,6 +24,15 @@ import '../../features/auth/domain/usecase/login_and_register_usecase.dart'
     as _i1024;
 import '../../features/auth/ui/login/cubit/login_cubit.dart' as _i416;
 import '../../features/auth/ui/login/cubit/register_cubit.dart' as _i980;
+import '../../features/cart/data/cart_repository/cart_repository_impl.dart'
+    as _i400;
+import '../../features/cart/data/cart_repository/data_source/cart_remote_data_source.dart'
+    as _i179;
+import '../../features/cart/data/cart_repository/data_source/cart_remote_data_source_impl.dart'
+    as _i277;
+import '../../features/cart/data/mapper/cart_mapper.dart' as _i817;
+import '../../features/cart/domain/repository/cart_repository.dart' as _i26;
+import '../../features/cart/presentation/cart_cubit/cart_cubit.dart' as _i244;
 import '../../features/network/api/commerce_services.dart' as _i392;
 import '../../features/products/ui/cubit/category_products_cubit.dart' as _i686;
 import '../../features/screens_navigationBar_layout/data/home_repository/data_source/home_remote_data_source.dart'
@@ -66,8 +75,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i392.CommerceServices>(
       () => _i392.CommerceServices.new(gh<_i361.Dio>()),
     );
+    gh.factory<_i817.CartMapper>(
+      () => _i817.CartMapper(gh<_i772.ProductMapper>()),
+    );
     gh.factory<_i412.HomeRemoteDataSource>(
       () => _i719.HomeRemoteDataSourceImpl(gh<_i392.CommerceServices>()),
+    );
+    gh.factory<_i179.CartRemoteDataSource>(
+      () => _i277.CartRemoteDataSourceImpl(gh<_i392.CommerceServices>()),
+    );
+    gh.factory<_i26.CartRepository>(
+      () => _i400.CartRepositoryImpl(
+        gh<_i817.CartMapper>(),
+        gh<_i179.CartRemoteDataSource>(),
+      ),
     );
     gh.factory<_i61.AuthRemoteDataSource>(
       () => _i948.AuthRemoteDataSourceImpl(gh<_i392.CommerceServices>()),
@@ -93,6 +114,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i515.LoadSubCategoriesUseCase>(
       () => _i515.LoadSubCategoriesUseCase(gh<_i20.HomeRepository>()),
+    );
+    gh.factory<_i244.CartCubit>(
+      () => _i244.CartCubit(gh<_i26.CartRepository>()),
     );
     gh.factory<_i1024.LoginUseCse>(
       () => _i1024.LoginUseCse(gh<_i787.AuthRepository>()),

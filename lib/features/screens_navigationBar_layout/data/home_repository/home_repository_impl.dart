@@ -1,6 +1,6 @@
 import 'package:e_commerce_v2/core/api_result/api_result.dart';
-import 'package:e_commerce_v2/features/network/model/categories/categories_response.dart';
-import 'package:e_commerce_v2/features/network/model/products/products_response.dart';
+import 'package:e_commerce_v2/features/network/model/response/categories/categories_response.dart';
+import 'package:e_commerce_v2/features/network/model/response/products/products_response.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/data/home_repository/data_source/home_remote_data_source.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/data/mappers/category_mapper.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/data/mappers/product_mapper.dart';

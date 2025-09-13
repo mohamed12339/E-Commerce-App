@@ -11,4 +11,6 @@ abstract class Routes {
     return MaterialPageRoute(builder: (_) => Register());
   }
   static const String categoryProductsRoutes = '/category_products';  /// دا بيستخدم ب genetrate Route دا ازاي بفايل تاني بتيعتلوا argument بتسمي settings
+
+  static const String cartRoute = "/cart";
 }

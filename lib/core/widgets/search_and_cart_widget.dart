@@ -1,3 +1,4 @@
+import 'package:e_commerce_v2/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -18,7 +19,7 @@ class SearchAndCartWidget extends StatelessWidget {
           Expanded(child: CustomSearchField()),
           InkWell(
             onTap: () {
-              // TODO: Implement cart navigation
+              Navigator.pushNamed(context, Routes.cartRoute);
             },
             child: SvgPicture.asset(AppSvgs.cartIcon),
           ),

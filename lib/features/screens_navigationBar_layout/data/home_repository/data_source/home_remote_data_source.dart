@@ -1,6 +1,7 @@
+import 'package:e_commerce_v2/features/network/model/response/categories/categories_response.dart';
+import 'package:e_commerce_v2/features/network/model/response/products/products_response.dart';
 import '../../../../../core/api_result/api_result.dart';
-import '../../../../network/model/categories/categories_response.dart';
-import '../../../../network/model/products/products_response.dart';
+
 
 abstract class HomeRemoteDataSource{ /// دا الداتا الاونلاين دا هوا ال abstract الي مش هابعت فية الحاجة ال impl هوا الي هايبعت الحاجة
 

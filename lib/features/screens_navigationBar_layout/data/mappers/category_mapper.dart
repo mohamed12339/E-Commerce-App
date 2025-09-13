@@ -1,7 +1,8 @@
+import 'package:e_commerce_v2/features/network/model/response/categories/category_dm.dart';
 import 'package:e_commerce_v2/features/screens_navigationBar_layout/domian/model/entity/category.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../network/model/categories/category_dm.dart';
+
 
 @injectable /// دا عشان يعرف ال CategoryMapper عند ال get it
 class CategoryMapper {   /// انا هنا ممكن اعملوا علي ال chatgpt بتاخد الكلاس بتاع ال domain source وكلاس ال data ال هوا categoriesResponse الي هوا دا (CategoryDM) وتحطهم في chatgpt   بس انا عملت كدا عشان افهم

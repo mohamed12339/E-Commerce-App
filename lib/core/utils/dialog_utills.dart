@@ -1,25 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-showLoading(BuildContext context){
-  showDialog(
+bool isLoadingDialogVisible = false;
+void showLoading(BuildContext context, {Key? key}) async {
+  if(isLoadingDialogVisible) return;
+  isLoadingDialogVisible = true;
+  await showDialog(
       context: context,
-      barrierDismissible: false,
-      builder:(context){
-    return AlertDialog( ///هيا عبارة عن شكل كدا زي bottomSheet بالظبط  جواة اي حاجة زي تكيست او لودينج ودول بيتكتبوا جواة content وفية حاجة كمان اسمها title:
-      content: Row(
-        children: [
-          Text("Loading..." , style: TextStyle(
-             color: Colors.black
-          ),),
-          Spacer(),
-          CircularProgressIndicator(),
-        ],
-      ),
+      builder: (context) {
+        return CupertinoAlertDialog(
+          key: key,
+          content: const Row(
+            children: [
+              CircularProgressIndicator(),
+              SizedBox(
+                width: 20,
+              ),
+              Text("Loading...")
+            ],
+          ),
+        );
+      });
 
-    );
-  });
 }
+Future<void> hideLoading(BuildContext context) async{
+  if(isLoadingDialogVisible){
+    Navigator.pop(context);
+    isLoadingDialogVisible = false;
+  }
+}
+
+
 
 showMessage(BuildContext context, {String? title,
   String? message,
